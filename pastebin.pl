@@ -1,4 +1,12 @@
 use strict;
+#
+# Irssi Pastebin
+# Copyright (C) Samuel Vandamme
+#
+
+#
+# Check README for license
+#
 
 use vars qw($VERSION %IRSSI);
 $VERSION = "1.0b";
