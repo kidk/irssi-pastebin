@@ -18,10 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 Change Log:
 v1.0b:
 	- Initial release
+v1.0:
+	- Looks stable
 
 Requirements:
 	- perl-libwww
 
 Problems ?
 	http://github.com/kidk/irssi-pastebin/issues
-
+	OR
+	email : samuel@sava.be
