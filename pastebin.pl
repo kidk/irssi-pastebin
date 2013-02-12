@@ -88,19 +88,26 @@ sub pastebin {
 	if ( $size >= Irssi::settings_get_int('pastebin_lines') ) {
 		# Prepare message
 		my $code = join("\n", @log);
+
 		my %fields = (
-			"parent_pid" => "",
-			"format" => "text",
-			"poster" => "",
-			"paste" => "Send",
-			"code2"	=> $code,
-			"expiry"=> "d"
+			"api_dev_key" => "0ab63310e602442c43ae1753955aa345",
+			"api_option" => "paste",
+			"api_paste_code" => $code,
 		);
 
 		# Pastebin
 		my $browser = new LWP::UserAgent;
-		my $page = $browser->post("http://pastebin.com/pastebin.php", \%fields);
-		$server->command('MSG -- '.$channel.' '.$page->header('Location'));
+		my $page = $browser->post("http://pastebin.com/api/api_post.php", \%fields);
+		
+		if ($page->is_success)
+		{
+			$server->command('MSG -- '.$channel.' '.$page->decoded_content);
+		}
+		else
+		{
+			$server->command('MSG -- '.$channel.' pastebin upload failed');
+		}
+		
 	} else	{
 		# Output normally
 		foreach (@log) { 
